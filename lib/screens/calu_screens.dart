@@ -57,6 +57,17 @@ class _CalculatorScreenState extends State<CalculatorScreen> {
       } else {
         _output = _output.substring(0, _output.length - 1);
       }
+    } else if (buttonText == "M+") { // Memory store
+      num1 = double.parse(output);
+      _output = "0";
+    } else if (buttonText == "M-") { // Memory recall
+      _output = num1.toString();
+    } else if (buttonText == "MC") { // Clear memory
+      num1 = 0.0;
+    } else if (buttonText == "%") { // Percentage calculation
+      num2 = double.parse(output);
+      num2 = num1 * (num2 / 100);
+      _output = num2.toString();
     } else {
       _output = _output + buttonText;
     }
@@ -130,6 +141,14 @@ class _CalculatorScreenState extends State<CalculatorScreen> {
                   CalculatorButton(text: "<", onPressed: buttonPressed), // Backspace button
                   CalculatorButton(text: "CLEAR", onPressed: buttonPressed),
                   CalculatorButton(text: "=", onPressed: buttonPressed),
+                ],
+              ),
+              Row(
+                children: [
+                  CalculatorButton(text: "M+", onPressed: buttonPressed), // Memory store
+                  CalculatorButton(text: "M-", onPressed: buttonPressed), // Memory recall
+                  CalculatorButton(text: "MC", onPressed: buttonPressed), // Clear memory
+                  CalculatorButton(text: "%", onPressed: buttonPressed), // Percentage calculation
                 ],
               ),
             ],
