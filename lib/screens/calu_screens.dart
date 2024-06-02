@@ -1,7 +1,6 @@
 import 'package:calu_app/widgets/calu_button.dart';
 import 'package:flutter/material.dart';
 
-
 class CalculatorScreen extends StatefulWidget {
   @override
   _CalculatorScreenState createState() => _CalculatorScreenState();
@@ -20,7 +19,10 @@ class _CalculatorScreenState extends State<CalculatorScreen> {
       num1 = 0.0;
       num2 = 0.0;
       operand = "";
-    } else if (buttonText == "+" || buttonText == "-" || buttonText == "/" || buttonText == "*") {
+    } else if (buttonText == "+" ||
+        buttonText == "-" ||
+        buttonText == "/" ||
+        buttonText == "*") {
       num1 = double.parse(output);
       operand = buttonText;
       _output = "0";
@@ -49,6 +51,12 @@ class _CalculatorScreenState extends State<CalculatorScreen> {
       num1 = 0.0;
       num2 = 0.0;
       operand = "";
+    } else if (buttonText == "<") { // Backspace functionality
+      if (_output.length == 1) {
+        _output = "0";
+      } else {
+        _output = _output.substring(0, _output.length - 1);
+      }
     } else {
       _output = _output + buttonText;
     }
@@ -119,6 +127,7 @@ class _CalculatorScreenState extends State<CalculatorScreen> {
               ),
               Row(
                 children: [
+                  CalculatorButton(text: "<", onPressed: buttonPressed), // Backspace button
                   CalculatorButton(text: "CLEAR", onPressed: buttonPressed),
                   CalculatorButton(text: "=", onPressed: buttonPressed),
                 ],
